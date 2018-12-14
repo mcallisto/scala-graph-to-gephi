@@ -11,11 +11,11 @@ trait Packageable {
 
   val artName: String = "graphgephi"
 
-  val gitName: String = "scala-graph-to-gephi"
-
 }
 
 trait Versioned extends ScalaModule with PublishModule with Packageable {
+
+  val gitName: String = "scala-graph-to-gephi"
 
   def scalaVersion: T[String] = "2.12.7"
 
@@ -39,7 +39,7 @@ trait Versioned extends ScalaModule with PublishModule with Packageable {
 trait Common extends Versioned {
 
   override def ivyDeps: T[Agg[Dep]] = super.ivyDeps() ++ Agg(
-  )
+    )
 
   override def sources: Sources = T.sources(
     millSourcePath / "src",
