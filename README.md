@@ -17,6 +17,6 @@ The library is built with [Mill](http://www.lihaoyi.com/mill).
 4. Or use the `mill jvm.test.one [testClassName]` command to run a single test class
 
 ### Draw a graph
-Add the `Drawable` trait to your project and use the `makeImage(g: Graph[N, E], path: String, name: String)` method to draw a PNG raster image file or an SVG vectorial image file.
+Add the `Drawable` trait to your project and use the `makeImage(g: Graph[N, E], path: String, name: String)` method to draw a **PNG** raster image file or an **SVG** vectorial image file.
 > ![directed graph image](docs/directed.png)
 > _`Graph(1 ~> 2, 2 ~> 3, 3 ~> 4, 4 ~> 5, 5 ~> 1, 1 ~> 4, 6 ~> 4)`_
