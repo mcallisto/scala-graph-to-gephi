@@ -43,8 +43,7 @@ trait Testable extends ScalaModule {
 
 }
 
-object jvm extends Versioned {
-  outer ⇒
+object jvm extends Versioned { outer ⇒
 
   override def repositories: Seq[coursier.Repository] = super.repositories ++ Seq(
     MavenRepository("http://bits.netbeans.org/nexus/content/groups/netbeans/"),
