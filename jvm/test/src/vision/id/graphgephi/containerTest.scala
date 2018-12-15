@@ -1,11 +1,12 @@
 package vision.id.graphgephi
 
-import org.scalatest.FlatSpec
-import os.RelPath
-import scalax.collection.Graph
-import scalax.collection.GraphPredef._
-
 import scala.util.{Failure, Success}
+
+import org.scalatest.FlatSpec
+
+import scalax.collection.Graph
+import scalax.collection.GraphEdge.UnDiEdge
+import scalax.collection.GraphPredef._
 
 class containerTest extends FlatSpec with Drawable {
 
@@ -26,16 +27,22 @@ class containerTest extends FlatSpec with Drawable {
     })
   }
 
-  "A directed graph" can "be drawn as a PNG image" in {
-    val path = "out/jvm/test/myTest/"
-    val name = "directed.png"
-    val g = Graph(1 ~> 2, 2 ~> 3, 3 ~> 4, 4 ~> 5, 5 ~> 1, 1 ~> 4, 6 ~> 4)
-    val f = makeImage(g, path, name)
-    assert(f match {
-      case Success(f) => f.isFile
-      case Failure(_) => false
-    })
+  val path: String            = "out/jvm/test/myTest/"
+  val name: String            = "directed"
+  val g: Graph[Int, UnDiEdge] = Graph(1 ~> 2, 2 ~> 3, 3 ~> 4, 4 ~> 5, 5 ~> 1, 1 ~> 4, 6 ~> 4)
 
+  "A directed graph" can "be drawn as a PNG image" in {
+    assert(makeImage(g, path, name + ".png") match {
+      case Success(png) => png.isFile
+      case Failure(_)   => false
+    })
+  }
+
+  it can "be drawn as an SVG image" in {
+    assert(makeImage(g, path, name + ".svg") match {
+      case Success(svg) => svg.isFile
+      case Failure(_)   => false
+    })
   }
 
 }
