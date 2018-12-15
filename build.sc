@@ -1,8 +1,6 @@
 import mill._
-import mill.define.Sources
 import scalalib._
-import scalalib.publish._
-import ammonite.ops._
+import publish._
 import coursier.maven.MavenRepository
 
 trait Packageable {
@@ -36,18 +34,6 @@ trait Versioned extends ScalaModule with PublishModule with Packageable {
 
 }
 
-trait Common extends Versioned {
-
-  override def ivyDeps: T[Agg[Dep]] = super.ivyDeps() ++ Agg(
-    )
-
-  override def sources: Sources = T.sources(
-    millSourcePath / "src",
-    millSourcePath / up / "shared" / "src"
-  )
-
-}
-
 trait Testable extends ScalaModule {
 
   override def ivyDeps: T[Agg[Dep]] = super.ivyDeps() ++ Agg(
@@ -57,7 +43,7 @@ trait Testable extends ScalaModule {
 
 }
 
-object jvm extends Common {
+object jvm extends Versioned {
   outer ⇒
 
   override def repositories: Seq[coursier.Repository] = super.repositories ++ Seq(
