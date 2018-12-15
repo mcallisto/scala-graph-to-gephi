@@ -66,7 +66,7 @@ object jvm extends Versioned {
     def testFrameworks: T[Seq[String]] = Seq("org.scalatest.tools.Framework")
 
     def one(args: String*) = T.command {
-      super.runMain("org.scalatest.run", args.map(organization + "." + artName + "." + _): _*)
+      super.runMain("org.scalatest.run", args.map(List(organization, artName, _).mkString(".")): _*)
     }
   }
 
