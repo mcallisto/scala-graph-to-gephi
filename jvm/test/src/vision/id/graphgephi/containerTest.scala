@@ -8,6 +8,9 @@ import scalax.collection.Graph
 import scalax.collection.GraphEdge.UnDiEdge
 import scalax.collection.GraphPredef._
 
+/**
+  * @author Mario Càllisto
+  */
 class containerTest extends FlatSpec with Drawable {
 
   "An undirected graph" can "be converted to a Gephi container" in {

@@ -25,6 +25,8 @@ import scalax.collection.Graph
 import scalax.collection.GraphPredef.EdgeLikeIn
 
 /** Facilitates drawing any graph as an image.
+  *
+  * @author Mario Càllisto
   */
 trait Drawable {
 

@@ -3,7 +3,9 @@ Basic conversion tool to visualize **Graph4Scala** graphs with the **Gephi** too
 
 ## Bridging two worlds
 Graphs are seamless Scala collections thanks to the excellent [Graph for Scala](https://scala-graph.org/) library by Peter Empen.
-Sometimes is needed to quickly visualize them.
+
+Sometimes is needed to quickly visualize them, for example for test purposes.
+
 [Gephi](https://github.com/gephi/gephi) is an award-winning open-source platform for visualizing and manipulating large graphs, with a standalone [toolkit](https://github.com/gephi/gephi-toolkit).
 
 ## How to
