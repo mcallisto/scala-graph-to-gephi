@@ -25,7 +25,7 @@ trait Versioned extends ScalaModule with PublishModule with Packageable {
     description = "Basic conversion tool to visualize Graph4Scala graphs with the Gephi toolkit",
     organization = organization,
     url = "https://github.com/mcallisto/" + gitName,
-    licenses = Seq(License.`Apache-2.0`),
+    licenses = Seq(License.`GPL-3.0`),
     versionControl = VersionControl.github("mcallisto", gitName),
     developers = Seq(
       Developer("mcallisto", "Mario Càllisto", "https://github.com/mcallisto")
