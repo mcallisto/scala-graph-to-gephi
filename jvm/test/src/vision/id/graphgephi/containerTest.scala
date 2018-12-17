@@ -41,11 +41,11 @@ class containerTest extends FlatSpec with Drawable {
     })
   }
 
-//  it can "be drawn as a PNG image" in {
-//    assert(makeImage(g, path, name + ".png") match {
-//      case Success(png) => png.isFile
-//      case Failure(_)   => false
-//    })
-//  }
+  it can "be drawn as a PNG image" in {
+    assert(makeImage(g, path, name + ".png") match {
+      case Success(png) => png.isFile
+      case Failure(_)   => false
+    })
+  }
 
 }
