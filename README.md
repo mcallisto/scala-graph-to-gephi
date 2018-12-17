@@ -10,6 +10,35 @@ Sometimes is needed to quickly visualize them, for example for test purposes.
 
 ## How to
 
+### Use
+Note that two resolvers needs to be added to access the Gephi Toolkit sources.
+
+#### From a Mill project
+```
+import mill._, scalalib._
+import coursier.maven.MavenRepository
+
+object foo extends ScalaModule {
+  def repositories = super.repositories ++ Seq(
+    MavenRepository("http://bits.netbeans.org/nexus/content/groups/netbeans/"),
+    MavenRepository("https://raw.github.com/gephi/gephi/mvn-thirdparty-repo/")
+  )
+  def ivyDeps = Agg(
+    ivy"vision.id::graphgephi:0.1.0"
+  )
+}
+```
+
+#### From an SBT project
+```
+resolvers ++= Seq(
+  "NetBeans" at "http://bits.netbeans.org/nexus/content/groups/netbeans/",
+  "gephi-thirdparty" at "https://raw.github.com/gephi/gephi/mvn-thirdparty-repo/"
+)
+
+libraryDependencies += "vision.id" % "graphgephi" % "0.1.0" classifier "all"
+```
+
 ### Test
 The library is built with [Mill](http://www.lihaoyi.com/mill).
 
