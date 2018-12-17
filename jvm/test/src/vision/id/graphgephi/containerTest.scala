@@ -36,16 +36,16 @@ class containerTest extends FlatSpec with Drawable {
   val g: Graph[Int, UnDiEdge] = Graph(1 ~> 2, 2 ~> 3, 3 ~> 4, 4 ~> 5, 5 ~> 1, 1 ~ 4, 6 ~> 4)
   os.makeDir.all(os.Path(RelPath(path), os.pwd))
 
-  "A directed graph" can "be drawn as a PNG image" in {
-    assert(makeImage(g, path, name + ".png") match {
-      case Success(png) => png.isFile
+  "A directed graph" can "be drawn as an SVG image" in {
+    assert(makeImage(g, path, name + ".svg") match {
+      case Success(svg) => svg.isFile
       case Failure(_)   => false
     })
   }
 
-  it can "be drawn as an SVG image" in {
-    assert(makeImage(g, path, name + ".svg") match {
-      case Success(svg) => svg.isFile
+  it can "be drawn as a PNG image" in {
+    assert(makeImage(g, path, name + ".png") match {
+      case Success(png) => png.isFile
       case Failure(_)   => false
     })
   }
