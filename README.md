@@ -1,4 +1,8 @@
-# Graph4Scala graphs to Gephi images
+# Graph4Scala graphs to Gephi images [![Build Status][travis-badge]][travis-link]
+
+[travis-badge]: https://travis-ci.org/mcallisto/scala-graph-to-gephi.svg?branch=master
+[travis-link]: https://travis-ci.org/mcallisto/scala-graph-to-gephi
+
 Basic conversion tool to visualize **Graph4Scala** graphs with the **Gephi** toolkit.
 
 ## Bridging two worlds
