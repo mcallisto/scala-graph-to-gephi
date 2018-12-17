@@ -15,7 +15,7 @@ Sometimes is needed to quickly visualize them, for example for test purposes.
 ## How to
 
 ### Use
-Note that two resolvers needs to be added to access the Gephi Toolkit sources.
+Note that two resolvers must be added to access the Gephi Toolkit sources.
 
 #### From a Mill project
 ```
