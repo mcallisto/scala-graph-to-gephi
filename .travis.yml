@@ -7,7 +7,6 @@ dist: trusty
 matrix:
   include:
     - stage: build
-      env: CI_SCRIPT=ci/test-mill-0.sh
       jdk: oraclejdk8
 
 script:
