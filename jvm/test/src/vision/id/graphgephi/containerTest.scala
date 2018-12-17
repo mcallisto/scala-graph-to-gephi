@@ -7,7 +7,6 @@ import org.scalatest.FlatSpec
 import scalax.collection.Graph
 import scalax.collection.GraphEdge.UnDiEdge
 import scalax.collection.GraphPredef._
-import os.RelPath
 
 /**
   * @author Mario Càllisto
@@ -34,7 +33,6 @@ class containerTest extends FlatSpec with Drawable {
   val path: String            = "out/jvm/test/myTest/"
   val name: String            = "directed"
   val g: Graph[Int, UnDiEdge] = Graph(1 ~> 2, 2 ~> 3, 3 ~> 4, 4 ~> 5, 5 ~> 1, 1 ~ 4, 6 ~> 4)
-  os.makeDir.all(os.Path(RelPath(path), os.pwd))
 
   "A directed graph" can "be drawn as an SVG image" in {
     assert(makeImage(g, path, name + ".svg") match {
@@ -43,11 +41,11 @@ class containerTest extends FlatSpec with Drawable {
     })
   }
 
-  it can "be drawn as a PNG image" in {
-    assert(makeImage(g, path, name + ".png") match {
-      case Success(png) => png.isFile
-      case Failure(_)   => false
-    })
-  }
+//  it can "be drawn as a PNG image" in {
+//    assert(makeImage(g, path, name + ".png") match {
+//      case Success(png) => png.isFile
+//      case Failure(_)   => false
+//    })
+//  }
 
 }
