@@ -1,7 +1,9 @@
-# Graph4Scala graphs to Gephi images [![Build Status][travis-badge]][travis-link]
+# Graph4Scala graphs to Gephi images [![Build Status][travis-badge]][travis-link] [![Maven Central][maven-badge]][maven-link]
 
 [travis-badge]: https://travis-ci.org/mcallisto/scala-graph-to-gephi.svg?branch=master
 [travis-link]: https://travis-ci.org/mcallisto/scala-graph-to-gephi
+[maven-badge]: https://maven-badges.herokuapp.com/maven-central/vision.id/graphgephi_2.12/badge.svg
+[maven-link]: https://maven-badges.herokuapp.com/maven-central/vision.id/graphgephi_2.12
 
 Basic conversion tool to visualize **Graph4Scala** graphs with the **Gephi** toolkit.
 
