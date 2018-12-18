@@ -1,7 +1,5 @@
-# Graph4Scala graphs to Gephi images [![Build Status][travis-badge]][travis-link]
-
-[travis-badge]: https://travis-ci.org/mcallisto/scala-graph-to-gephi.svg?branch=master
-[travis-link]: https://travis-ci.org/mcallisto/scala-graph-to-gephi
+[![Build Status][travis-badge]][travis-link] [![Maven Central][maven-badge]][maven-link] [![Codacy Badge][codacy-abdge]][codacy-link]
+# Graph4Scala graphs to Gephi images
 
 Basic conversion tool to visualize **Graph4Scala** graphs with the **Gephi** toolkit.
 
@@ -55,3 +53,11 @@ The library is built with [Mill](http://www.lihaoyi.com/mill).
 Add the `Drawable` trait to your project and use the `makeImage(g: Graph[N, E], path: String, name: String)` method to draw a **PNG** raster image file or an **SVG** vectorial image file.
 > ![directed graph image](docs/directed.png)
 > _`Graph(1 ~> 2, 2 ~> 3, 3 ~> 4, 4 ~> 5, 5 ~> 1, 1 ~ 4, 6 ~> 4)`_
+
+
+[travis-badge]: https://travis-ci.org/mcallisto/scala-graph-to-gephi.svg?branch=master
+[travis-link]: https://travis-ci.org/mcallisto/scala-graph-to-gephi
+[maven-badge]: https://maven-badges.herokuapp.com/maven-central/vision.id/graphgephi_2.12/badge.svg
+[maven-link]: https://maven-badges.herokuapp.com/maven-central/vision.id/graphgephi_2.12
+[codacy-abdge]: https://api.codacy.com/project/badge/Grade/10ccdeb613904b878c6eda2f0d82d851
+[codacy-link]: https://www.codacy.com/app/mcallisto/scala-graph-to-gephi?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mcallisto/scala-graph-to-gephi&amp;utm_campaign=Badge_Grade
