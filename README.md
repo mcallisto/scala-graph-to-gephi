@@ -54,7 +54,6 @@ Add the `Drawable` trait to your project and use the `makeImage(g: Graph[N, E], 
 > ![directed graph image](docs/directed.png)
 > _`Graph(1 ~> 2, 2 ~> 3, 3 ~> 4, 4 ~> 5, 5 ~> 1, 1 ~ 4, 6 ~> 4)`_
 
-
 [travis-badge]: https://travis-ci.org/mcallisto/scala-graph-to-gephi.svg?branch=master
 [travis-link]: https://travis-ci.org/mcallisto/scala-graph-to-gephi
 [maven-badge]: https://maven-badges.herokuapp.com/maven-central/vision.id/graphgephi_2.12/badge.svg

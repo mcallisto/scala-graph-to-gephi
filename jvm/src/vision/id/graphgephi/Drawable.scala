@@ -152,7 +152,7 @@ trait Drawable {
     }
 
     val isWeighted                          = g.edges.exists(_.weight != 1.0)
-    val nodeDrafts: Map[g.NodeT, NodeDraft] = g.nodes.map(n => n → addNode(lbl = n.toString))(collection.breakOut)
+    val nodeDrafts: Map[g.NodeT, NodeDraft] = g.nodes.map(n => n -> addNode(lbl = n.toString))(collection.breakOut)
 
     implicit final class EdgeG(edge: g.EdgeT) {
 
