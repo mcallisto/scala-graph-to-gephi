@@ -1,4 +1,5 @@
-# Graph4Scala graphs to Gephi images [![Build Status][travis-badge]][travis-link] [![Maven Central][maven-badge]][maven-link]
+[![Build Status][travis-badge]][travis-link] [![Maven Central][maven-badge]][maven-link]
+# Graph4Scala graphs to Gephi images
 
 [travis-badge]: https://travis-ci.org/mcallisto/scala-graph-to-gephi.svg?branch=master
 [travis-link]: https://travis-ci.org/mcallisto/scala-graph-to-gephi
