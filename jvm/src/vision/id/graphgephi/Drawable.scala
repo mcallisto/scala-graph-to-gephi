@@ -80,7 +80,7 @@ trait Drawable {
       layout.setOutboundAttractionDistribution(true)
 
       layout.initAlgo()
-      0 to iterations forall { _ ⇒
+      0 to iterations forall { _ =>
         if (layout.canAlgo) {
           layout.goAlgo()
           true
@@ -109,7 +109,7 @@ trait Drawable {
       os.Path(RelPath(path + name), os.pwd).toIO
     }
 
-    toContainer(g).map { container ⇒
+    toContainer(g).map { container =>
       appendToWorkspace(container)
 
       val graphModel: GraphModel = assertedLookup(classOf[GraphController]).getGraphModel
@@ -152,7 +152,7 @@ trait Drawable {
     }
 
     val isWeighted                          = g.edges.exists(_.weight != 1.0)
-    val nodeDrafts: Map[g.NodeT, NodeDraft] = g.nodes.map(n ⇒ n → addNode(lbl = n.toString))(collection.breakOut)
+    val nodeDrafts: Map[g.NodeT, NodeDraft] = g.nodes.map(n => n → addNode(lbl = n.toString))(collection.breakOut)
 
     implicit final class EdgeG(edge: g.EdgeT) {
 
@@ -175,7 +175,7 @@ trait Drawable {
 
     var alreadyCounted: Set[(g.Node, g.Node)] = Set()
 
-    g.edges.foreach { edge ⇒
+    g.edges.foreach { edge =>
       def fakeNode: NodeDraft = addNode(size = Some(0.05f))
 
       if (edge.nonHyperEdge) {
@@ -222,7 +222,7 @@ trait Drawable {
           dir = EdgeDirection.UNDIRECTED
         )
         realNodes.foreach(
-          node ⇒
+          node =>
             addEdge(
               src = fake,
               trg = node.asNodeDraft,
