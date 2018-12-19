@@ -38,6 +38,62 @@ trait Drawable {
     l
   }
 
+  private def initWorkspace: Workspace = {
+    val pc: ProjectController = assertedLookup(classOf[ProjectController])
+    pc.newProject()
+    pc.getCurrentWorkspace
+  }
+
+  private def appendToWorkspace(container: Container): Unit = {
+    val importController: ImportController = assertedLookup(classOf[ImportController])
+    val rootLogger                         = LogManager.getLogManager.getLogger("")
+    val lvl                                = rootLogger.getLevel
+    rootLogger.setLevel(Level.WARNING)
+    importController.process(container, new DefaultProcessor, initWorkspace)
+    rootLogger.setLevel(lvl)
+  }
+
+  def filteredView(gm: GraphModel): GraphView = {
+    val filterController: FilterController = assertedLookup(classOf[FilterController])
+    val degreeFilter                       = new DegreeRangeFilter
+    degreeFilter.init(gm.getDirectedGraph)
+    degreeFilter.setRange(new Range(1, Integer.MAX_VALUE)) //Remove nodes with degree < 1
+    filterController.filter(filterController.createQuery(degreeFilter))
+  }
+
+  def adjustLayout(gm: GraphModel, iterations: Int): Unit = {
+    val layout = new ForceAtlas2(null)
+    layout.setGraphModel(gm)
+    layout.resetPropertiesValues()
+    layout.setAdjustSizes(true)
+    layout.setScalingRatio(100.0)
+    layout.setOutboundAttractionDistribution(true)
+
+    layout.initAlgo()
+    0 to iterations forall { _ =>
+      if (layout.canAlgo) {
+        layout.goAlgo()
+        true
+      } else false
+    }
+    layout.endAlgo()
+  }
+
+  def setProperties(): Unit = {
+    val properties = assertedLookup(classOf[PreviewController]).getModel.getProperties
+    properties.putValue(SHOW_NODE_LABELS, true)
+    properties.putValue(SHOW_EDGE_LABELS, true)
+    properties.putValue(ARROW_SIZE, 100.0f)
+    properties.putValue(NODE_OPACITY, 10.5f)
+    properties.putValue(NODE_BORDER_COLOR, new DependantColor(Color.BLUE))
+    properties.putValue(NODE_BORDER_WIDTH, 2.0f)
+    properties.putValue(EDGE_CURVED, false)
+    properties.putValue(EDGE_COLOR, new EdgeColor(Color.GRAY))
+    properties.putValue(EDGE_THICKNESS, 0.1f)
+    properties.putValue(NODE_LABEL_FONT, properties.getFontValue(NODE_LABEL_FONT).deriveFont(8))
+    properties.putValue(NODE_LABEL_PROPORTIONAL_SIZE, false)
+  }
+
   /** Draw graph image and write it to the given path and file name.
     *
     * @param g    the graph to output
@@ -47,62 +103,6 @@ trait Drawable {
     * @tparam E type of edge
     */
   def makeImage[N, E[X] <: EdgeLikeIn[X]](g: Graph[N, E], path: String, name: String): Try[File] = {
-
-    def initWorkspace: Workspace = {
-      val pc: ProjectController = assertedLookup(classOf[ProjectController])
-      pc.newProject()
-      pc.getCurrentWorkspace
-    }
-
-    def appendToWorkspace(container: Container): Unit = {
-      val importController: ImportController = assertedLookup(classOf[ImportController])
-      val rootLogger                         = LogManager.getLogManager.getLogger("")
-      val lvl                                = rootLogger.getLevel
-      rootLogger.setLevel(Level.WARNING)
-      importController.process(container, new DefaultProcessor, initWorkspace)
-      rootLogger.setLevel(lvl)
-    }
-
-    def filteredView(gm: GraphModel): GraphView = {
-      val filterController: FilterController = assertedLookup(classOf[FilterController])
-      val degreeFilter                       = new DegreeRangeFilter
-      degreeFilter.init(gm.getDirectedGraph)
-      degreeFilter.setRange(new Range(1, Integer.MAX_VALUE)) //Remove nodes with degree < 1
-      filterController.filter(filterController.createQuery(degreeFilter))
-    }
-
-    def adjustLayout(gm: GraphModel, iterations: Int): Unit = {
-      val layout = new ForceAtlas2(null)
-      layout.setGraphModel(gm)
-      layout.resetPropertiesValues()
-      layout.setAdjustSizes(true)
-      layout.setScalingRatio(100.0)
-      layout.setOutboundAttractionDistribution(true)
-
-      layout.initAlgo()
-      0 to iterations forall { _ =>
-        if (layout.canAlgo) {
-          layout.goAlgo()
-          true
-        } else false
-      }
-      layout.endAlgo()
-    }
-
-    def setProperties(): Unit = {
-      val properties = assertedLookup(classOf[PreviewController]).getModel.getProperties
-      properties.putValue(SHOW_NODE_LABELS, true)
-      properties.putValue(SHOW_EDGE_LABELS, true)
-      properties.putValue(ARROW_SIZE, 100.0f)
-      properties.putValue(NODE_OPACITY, 10.5f)
-      properties.putValue(NODE_BORDER_COLOR, new DependantColor(Color.BLUE))
-      properties.putValue(NODE_BORDER_WIDTH, 2.0f)
-      properties.putValue(EDGE_CURVED, false)
-      properties.putValue(EDGE_COLOR, new EdgeColor(Color.GRAY))
-      properties.putValue(EDGE_THICKNESS, 0.1f)
-      properties.putValue(NODE_LABEL_FONT, properties.getFontValue(NODE_LABEL_FONT).deriveFont(8))
-      properties.putValue(NODE_LABEL_PROPORTIONAL_SIZE, false)
-    }
 
     def createFile: File = {
       os.makeDir.all(os.Path(RelPath(path), os.pwd))
