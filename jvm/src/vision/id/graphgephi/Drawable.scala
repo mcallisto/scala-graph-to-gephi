@@ -13,7 +13,7 @@ import org.gephi.graph.api.{GraphController, GraphModel, GraphView}
 import org.gephi.io.exporter.api.ExportController
 import org.gephi.io.importer.api._
 import org.gephi.io.processor.plugin.DefaultProcessor
-import org.gephi.layout.plugin.forceAtlas2.ForceAtlas2
+import org.gephi.layout.plugin.forceAtlas2.{ForceAtlas2, ForceAtlas2Builder}
 import org.gephi.preview.api.PreviewController
 import org.gephi.preview.api.PreviewProperty._
 import org.gephi.preview.types.{DependantColor, EdgeColor}
@@ -62,7 +62,7 @@ trait Drawable {
   }
 
   def adjustLayout(gm: GraphModel, iterations: Int = 1000): Unit = {
-    val layout = new ForceAtlas2(null)
+    val layout = new ForceAtlas2(new ForceAtlas2Builder())
     layout.setGraphModel(gm)
     layout.resetPropertiesValues()
     layout.setAdjustSizes(true)
