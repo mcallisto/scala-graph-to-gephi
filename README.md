@@ -1,9 +1,11 @@
 [![Build Status][travis-badge]][travis-link] [![Maven Central][maven-badge]][maven-link] [![Codacy Badge][codacy-abdge]][codacy-link]
+
 # Graph4Scala graphs to Gephi images
 
 Basic conversion tool to visualize **Graph4Scala** graphs with the **Gephi** toolkit.
 
 ## Bridging two worlds
+
 Graphs are seamless Scala collections thanks to the excellent [Graph for Scala](https://scala-graph.org/) library by Peter Empen.
 
 Sometimes is needed to quickly visualize them, for example for test purposes.
@@ -13,9 +15,11 @@ Sometimes is needed to quickly visualize them, for example for test purposes.
 ## How to
 
 ### Use
+
 Note that two resolvers must be added to access the Gephi Toolkit sources.
 
 #### From a Mill project
+
 ```scala
 import mill._, scalalib._
 import coursier.maven.MavenRepository
@@ -32,6 +36,7 @@ object foo extends ScalaModule {
 ```
 
 #### From an SBT project
+
 ```scala
 resolvers ++= Seq(
   "NetBeans" at "http://bits.netbeans.org/nexus/content/groups/netbeans/",
@@ -42,6 +47,7 @@ libraryDependencies += "vision.id" % "graphgephi" % "0.1.1" classifier "all"
 ```
 
 ### Test
+
 The library is built with [Mill](http://www.lihaoyi.com/mill).
 
 1.  [Install](http://www.lihaoyi.com/mill/#installation) Mill
@@ -50,6 +56,7 @@ The library is built with [Mill](http://www.lihaoyi.com/mill).
 4.  Or use the `mill jvm.test.one [testClassName]` command to run a single test class
 
 ### Draw a graph
+
 Add the `Drawable` trait to your project and use the `makeImage(g: Graph[N, E], path: String, name: String)` method to draw a **PNG** raster image file or an **SVG** vectorial image file.
 > ![directed graph image](docs/directed.png)
 > _`Graph(1 ~> 2, 2 ~> 3, 3 ~> 4, 4 ~> 5, 5 ~> 1, 1 ~ 4, 6 ~> 4)`_
