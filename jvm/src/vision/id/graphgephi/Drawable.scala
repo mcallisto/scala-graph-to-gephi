@@ -160,12 +160,12 @@ trait Drawable {
         if (edge.isDirected) EdgeDirection.DIRECTED
         else EdgeDirection.UNDIRECTED
 
-      def getLabel: String = {
-        var label: List[String] = List()
-        if (isWeighted) label = label :+ edge.weight.toString
-        if (edge.isLabeled) label = label :+ edge.label.toString
-        label.mkString(" - ")
-      }
+      def getLabel: String =
+        (
+          (if (isWeighted) List(edge.weight.toString) else Nil) ++
+            (if (edge.isLabeled) List(edge.label.toString) else Nil)
+        ).mkString(" - ")
+
     }
 
     implicit final class NodeG(node: g.NodeT) {
