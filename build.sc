@@ -15,9 +15,9 @@ trait Versioned extends ScalaModule with PublishModule with Packageable {
 
   val gitName: String = "scala-graph-to-gephi"
 
-  def scalaVersion: T[String] = "2.12.7"
+  def scalaVersion: T[String] = "2.12.8"
 
-  def publishVersion: T[String] = "0.1.0"
+  def publishVersion: T[String] = "0.1.1"
 
   override def artifactName: T[String] = artName
 
