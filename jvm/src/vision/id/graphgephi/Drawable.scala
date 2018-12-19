@@ -24,13 +24,13 @@ import os.RelPath
 import scalax.collection.Graph
 import scalax.collection.GraphPredef.EdgeLikeIn
 
+import Drawable._
+
 /** Facilitates drawing any graph as an image.
   *
   * @author Mario Càllisto
   */
 trait Drawable {
-
-  import Drawable._
 
   private def assertedLookup[T <: AnyRef: ClassTag](clazz: Class[T]): T = {
     val l: T = Lookup.getDefault.lookup(clazz)
