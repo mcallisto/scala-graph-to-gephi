@@ -61,7 +61,7 @@ trait Drawable {
     filterController.filter(filterController.createQuery(degreeFilter))
   }
 
-  def adjustLayout(gm: GraphModel, iterations: Int): Unit = {
+  def adjustLayout(gm: GraphModel, iterations: Int = 1000): Unit = {
     val layout = new ForceAtlas2(null)
     layout.setGraphModel(gm)
     layout.resetPropertiesValues()
@@ -114,7 +114,7 @@ trait Drawable {
 
       val graphModel: GraphModel = assertedLookup(classOf[GraphController]).getGraphModel
       graphModel.setVisibleView(filteredView(graphModel))
-      adjustLayout(graphModel, 1000)
+      adjustLayout(graphModel)
       setProperties()
 
       val file = createFile
@@ -141,6 +141,8 @@ trait Drawable {
       loader.addNode(n)
       n
     }
+
+    def fakeNode: NodeDraft = addNode(size = Some(0.05f))
 
     def addEdge(src: NodeDraft, trg: NodeDraft, dir: EdgeDirection, lbl: String = "", invert: Boolean = false): Unit = {
       val e: EdgeDraft = loader.factory.newEdgeDraft
@@ -173,9 +175,7 @@ trait Drawable {
       def asNodeDraft: NodeDraft = nodeDrafts(node)
     }
 
-    g.edges.foldLeft(Set(): Set[(g.Node, g.Node)])((count, edge) => {
-      def fakeNode: NodeDraft = addNode(size = Some(0.05f))
-
+    g.edges.foldLeft(Set(): Set[(g.Node, g.Node)])((count, edge) =>
       if (edge.nonHyperEdge) {
         val (node1, node2) = (edge._1, edge._2)
         val isInverted     = edge.to == node1
@@ -229,8 +229,6 @@ trait Drawable {
               dir = edge.getDirection
           ))
         count
-      }
-
     })
 
     container
