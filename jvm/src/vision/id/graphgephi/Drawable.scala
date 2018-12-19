@@ -177,13 +177,14 @@ trait Drawable {
 
     g.edges.foldLeft(Set(): Set[(g.Node, g.Node)])((count, edge) =>
       if (edge.nonHyperEdge) {
-        val isInverted  = edge.to == edge._1
-        val isMultiEdge = !edge.isLooping && edge._1.connectionsWith(edge._2).size > 1
+        val (node1, node2) = (edge._n(0), edge._n(1))
+        val isInverted     = edge.to == node1
+        val isMultiEdge    = !edge.isLooping && node1.connectionsWith(node2).size > 1
 
         def addSimple(): Unit =
           addEdge(
-            src = edge._1.asNodeDraft,
-            trg = edge._2.asNodeDraft,
+            src = node1.asNodeDraft,
+            trg = node2.asNodeDraft,
             dir = edge.getDirection,
             lbl = edge.getLabel,
             invert = isInverted
@@ -193,19 +194,19 @@ trait Drawable {
           addSimple()
           count
         } else {
-          if (!count.contains((edge._1, edge._2)) && !count.contains((edge._2, edge._1))) {
+          if (!count.contains((node1, node2)) && !count.contains((node2, node1))) {
             addSimple()
-            count + ((edge._1, edge._2))
+            count + ((node1, node2))
           } else {
             val fake = fakeNode
             addEdge(
-              src = (if (isInverted) edge._2 else edge._1).asNodeDraft,
+              src = (if (isInverted) node2 else node1).asNodeDraft,
               trg = fake,
               dir = EdgeDirection.UNDIRECTED
             )
             addEdge(
               src = fake,
-              trg = (if (isInverted) edge._1 else edge._2).asNodeDraft,
+              trg = (if (isInverted) node1 else node2).asNodeDraft,
               dir = edge.getDirection,
               lbl = edge.getLabel
             )
