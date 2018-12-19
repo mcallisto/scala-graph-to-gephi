@@ -173,9 +173,7 @@ trait Drawable {
       def asNodeDraft: NodeDraft = nodeDrafts(node)
     }
 
-    var alreadyCounted: Set[(g.Node, g.Node)] = Set()
-
-    g.edges.foreach { edge =>
+    g.edges.foldLeft(Set(): Set[(g.Node, g.Node)])((count, edge) => {
       def fakeNode: NodeDraft = addNode(size = Some(0.05f))
 
       if (edge.nonHyperEdge) {
@@ -192,12 +190,13 @@ trait Drawable {
             invert = isInverted
           )
 
-        if (!isMultiEdge)
+        if (!isMultiEdge) {
           addSimple()
-        else {
-          if (!alreadyCounted.contains((node1, node2)) && !alreadyCounted.contains((node2, node1))) {
-            alreadyCounted = alreadyCounted + ((node1, node2))
+          count
+        } else {
+          if (!count.contains((node1, node2)) && !count.contains((node2, node1))) {
             addSimple()
+            count + ((node1, node2))
           } else {
             val fake = fakeNode
             addEdge(
@@ -211,6 +210,7 @@ trait Drawable {
               dir = edge.getDirection,
               lbl = edge.getLabel
             )
+            count
           }
         }
       } else {
@@ -228,8 +228,10 @@ trait Drawable {
               trg = node.asNodeDraft,
               dir = edge.getDirection
           ))
+        count
       }
-    }
+
+    })
 
     container
   }
