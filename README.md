@@ -26,7 +26,7 @@ object foo extends ScalaModule {
     MavenRepository("https://raw.github.com/gephi/gephi/mvn-thirdparty-repo/")
   )
   def ivyDeps = Agg(
-    ivy"vision.id::graphgephi:0.1.0"
+    ivy"vision.id::graphgephi:0.1.1"
   )
 }
 ```
@@ -38,7 +38,7 @@ resolvers ++= Seq(
   "gephi-thirdparty" at "https://raw.github.com/gephi/gephi/mvn-thirdparty-repo/"
 )
 
-libraryDependencies += "vision.id" % "graphgephi" % "0.1.0" classifier "all"
+libraryDependencies += "vision.id" % "graphgephi" % "0.1.1" classifier "all"
 ```
 
 ### Test
