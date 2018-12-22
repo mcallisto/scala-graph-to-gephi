@@ -32,6 +32,9 @@ trait Versioned extends ScalaModule with PublishModule with Packageable {
     )
   )
 
+  override def compileIvyDeps = Agg(ivy"org.scoverage::scalac-scoverage-runtime:1.3.0")
+  override def scalacOptions: T[Seq[String]] = Seq("-P:scoverage:dataDir:out/jvm/scoverage/")
+  override def scalacPluginIvyDeps = Agg(ivy"org.scoverage::scalac-scoverage-plugin:1.3.0")
 }
 
 trait Testable extends ScalaModule {
