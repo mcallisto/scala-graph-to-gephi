@@ -32,9 +32,6 @@ trait Versioned extends ScalaModule with PublishModule with Packageable {
     )
   )
 
-  override def compileIvyDeps = Agg(ivy"org.scoverage::scalac-scoverage-runtime:1.3.0")
-  override def scalacOptions: T[Seq[String]] = Seq("-P:scoverage:dataDir:out/jvm/scoverage/")
-  override def scalacPluginIvyDeps = Agg(ivy"org.scoverage::scalac-scoverage-plugin:1.3.0")
 }
 
 trait Testable extends ScalaModule {
@@ -58,6 +55,10 @@ object jvm extends Versioned { outer ⇒
     ivy"com.lihaoyi::os-lib:0.2.6",
     ivy"org.gephi:gephi-toolkit:0.9.2"
   )
+
+  override def compileIvyDeps = Agg(ivy"org.scoverage::scalac-scoverage-runtime:1.3.0")
+  override def scalacOptions: T[Seq[String]] = Seq("-P:scoverage:dataDir:out/jvm/scoverage/")
+  override def scalacPluginIvyDeps = Agg(ivy"org.scoverage::scalac-scoverage-plugin:1.3.0")
 
   object test extends outer.Tests with Testable with Packageable {
 
