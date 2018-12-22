@@ -18,7 +18,7 @@ script:
   - export PATH=~/bin/mill:$PATH
   - git clean -xdf
   - mill -i all jvm.compile
-  - mill -i all jvm.test
+  - mill -i jvm.test
   - sonar-scanner
 
 cache:
