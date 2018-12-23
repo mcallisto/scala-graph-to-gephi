@@ -66,7 +66,7 @@ object jvm extends Versioned { outer ⇒
       super.unmanagedClasspath() ++ outer.unmanagedClasspath()
     }
 
-    override def scalacOptions: T[Seq[String]] = Seq()
+    override def scalacOptions: T[Seq[String]] = Seq("")
 
     def testFrameworks: T[Seq[String]] = Seq("org.scalatest.tools.Framework")
 
