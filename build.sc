@@ -67,6 +67,7 @@ object jvm extends Versioned { outer ⇒
       super.unmanagedClasspath() ++ outer.unmanagedClasspath()
     }
 
+    override def compileIvyDeps: T[Loose.Agg[Dep]] = Agg.empty[Dep]
     override def scalacOptions: T[Seq[String]] = Seq("")
     override def scalacPluginIvyDeps: T[Loose.Agg[Dep]] = Agg.empty[Dep]
 
