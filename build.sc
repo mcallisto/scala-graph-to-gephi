@@ -2,6 +2,7 @@ import mill._
 import scalalib._
 import publish._
 import coursier.maven.MavenRepository
+import mill.util.Loose
 
 trait Packageable {
 
@@ -58,7 +59,7 @@ object jvm extends Versioned { outer ⇒
 
   override def compileIvyDeps = Agg(ivy"org.scoverage::scalac-scoverage-runtime:1.3.0")
   override def scalacOptions: T[Seq[String]] = Seq("-P:scoverage:dataDir:out/jvm/scoverage/")
-  override def scalacPluginIvyDeps = Agg(ivy"org.scoverage::scalac-scoverage-plugin:1.3.0")
+  override def scalacPluginIvyDeps: T[Loose.Agg[Dep]] = Agg(ivy"org.scoverage::scalac-scoverage-plugin:1.3.0")
 
   object test extends outer.Tests with Testable with Packageable {
 
@@ -67,6 +68,7 @@ object jvm extends Versioned { outer ⇒
     }
 
     override def scalacOptions: T[Seq[String]] = Seq("")
+    override def scalacPluginIvyDeps: T[Loose.Agg[Dep]] = Agg.empty[Dep]
 
     def testFrameworks: T[Seq[String]] = Seq("org.scalatest.tools.Framework")
 
