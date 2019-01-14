@@ -7,26 +7,26 @@ trait Packageable {
 
   val organization: String = "vision.id"
 
-  val artName: String = "graphgephi"
+  val name: String = "graphgephi"
 
 }
 
 trait Versioned extends ScalaModule with PublishModule with Packageable {
 
-  val gitName: String = "scala-graph-to-gephi"
+  val githubName: String = "scala-graph-to-gephi"
 
   def scalaVersion: T[String] = "2.12.8"
 
   def publishVersion: T[String] = "0.1.1"
 
-  override def artifactName: T[String] = artName
+  override def artifactName: T[String] = name
 
   def pomSettings: T[PomSettings] = PomSettings(
     description = "Basic conversion tool to visualize Graph4Scala graphs with the Gephi toolkit",
     organization = organization,
-    url = "https://github.com/mcallisto/" + gitName,
+    url = "https://github.com/mcallisto/" + githubName,
     licenses = Seq(License.`GPL-3.0`),
-    versionControl = VersionControl.github("mcallisto", gitName),
+    versionControl = VersionControl.github("mcallisto", githubName),
     developers = Seq(
       Developer("mcallisto", "Mario Càllisto", "https://github.com/mcallisto")
     )
@@ -37,8 +37,7 @@ trait Versioned extends ScalaModule with PublishModule with Packageable {
 trait Testable extends ScalaModule {
 
   override def ivyDeps: T[Agg[Dep]] = super.ivyDeps() ++ Agg(
-    ivy"org.scalatest::scalatest:3.0.5",
-    ivy"org.scalacheck::scalacheck:1.14.0"
+    ivy"org.scalatest::scalatest:3.0.5"
   )
 
 }
@@ -65,7 +64,7 @@ object jvm extends Versioned { outer ⇒
     def testFrameworks: T[Seq[String]] = Seq("org.scalatest.tools.Framework")
 
     def one(args: String*) = T.command {
-      super.runMain("org.scalatest.run", args.map(List(organization, artName, _).mkString(".")): _*)
+      super.runMain("org.scalatest.run", args.map(List(organization, name, _).mkString(".")): _*)
     }
   }
 
