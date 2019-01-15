@@ -16,9 +16,9 @@ Sometimes is needed to quickly visualize them, for example for test purposes.
 
 ### Use
 
-Note that two resolvers must be added to access the Gephi Toolkit sources.
-
 #### From a **[Mill](http://www.lihaoyi.com/mill)** project
+
+Note that two resolvers must be added to access the Gephi Toolkit sources.
 
 ```scala
 import mill._, scalalib._
@@ -38,12 +38,10 @@ object foo extends ScalaModule {
 #### From an **[sbt](https://www.scala-sbt.org/)** project
 
 ```scala
-resolvers ++= Seq(
-  "NetBeans" at "http://bits.netbeans.org/nexus/content/groups/netbeans/",
-  "gephi-thirdparty" at "https://raw.github.com/gephi/gephi/mvn-thirdparty-repo/"
+libraryDependencies ++= Seq(
+  "org.gephi" % "gephi-toolkit" % "0.9.2" classifier "all",
+  "vision.id" %% "graphgephi" % "0.1.1"
 )
-
-libraryDependencies += "vision.id" % "graphgephi" % "0.1.1" classifier "all"
 ```
 
 ### Draw a graph
