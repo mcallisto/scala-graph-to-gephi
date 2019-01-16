@@ -69,13 +69,9 @@ object jvm extends Versioned { outer ⇒
 
   object test extends outer.Tests with Testable with Packageable {
 
-//    override def compileIvyDeps = Agg(ivy"org.scoverage::scalac-scoverage-runtime:1.3.0")
-//    override def scalacOptions: T[Seq[String]] = Seq("-P:scoverage:dataDir:out/jvm/scoverage/")
-//    override def scalacPluginIvyDeps: T[Loose.Agg[Dep]] = Agg(ivy"org.scoverage::scalac-scoverage-plugin:1.3.0")
-
-    override def compileIvyDeps: T[Loose.Agg[Dep]] = Agg.empty[Dep]
-    override def scalacOptions: T[Seq[String]] = Seq("")
-    override def scalacPluginIvyDeps: T[Loose.Agg[Dep]] = Agg.empty[Dep]
+    //override def compileIvyDeps: T[Loose.Agg[Dep]] = T(Agg.empty[Dep])
+    override def scalacOptions: T[Seq[String]] = T(Seq.empty[String])
+    override def scalacPluginIvyDeps: T[Loose.Agg[Dep]] = T(Agg.empty[Dep])
 
     def testFrameworks: T[Seq[String]] = Seq("org.scalatest.tools.Framework")
 
