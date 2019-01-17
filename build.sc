@@ -54,18 +54,16 @@ object jvm extends Versioned { outer ⇒
   override def ivyDeps: T[Agg[Dep]] = super.ivyDeps() ++ Agg(
     ivy"org.scala-graph::graph-core:1.12.5",
     ivy"com.lihaoyi::os-lib:0.2.6",
-    ivy"org.gephi:gephi-toolkit:0.9.2"
+    ivy"org.gephi:gephi-toolkit:0.9.2",
+    ivy"org.scoverage::scalac-scoverage-runtime:1.3.1"
   )
 
   def coverageMeasurementsDir = T.persistent(T.ctx().dest)
   override def scalacOptions = T(super.scalacOptions() ++ Seq(s"-P:scoverage:dataDir:${coverageMeasurementsDir().toIO.getAbsolutePath}"))
-  override def compileIvyDeps = Agg(ivy"org.scoverage::scalac-scoverage-runtime:1.3.1")
+//  override def compileIvyDeps = Agg(ivy"org.scoverage::scalac-scoverage-runtime:1.3.1")
 //  override def scalacOptions: T[Seq[String]] = Seq("-P:scoverage:dataDir:out/jvm/scoverage/")
   override def scalacPluginIvyDeps: T[Loose.Agg[Dep]] = Agg(ivy"org.scoverage::scalac-scoverage-plugin:1.3.1")
 
-//  def coverage(args: String*) = T.command {
-//    super.compile
-//  }
 
   object test extends outer.Tests with Testable with Packageable {
 
