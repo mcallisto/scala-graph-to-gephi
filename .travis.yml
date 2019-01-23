@@ -21,7 +21,9 @@ script:
   - mill -i jvm.compile
   - mill -i resolve jvm.test
   - mill -i jvm.test
-  - sonar-scanner
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 
 cache:
   directories:
