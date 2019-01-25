@@ -1,4 +1,4 @@
-[![Build Status][travis-badge]][travis-link] [![Maven Central][maven-badge]][maven-link] [![Codacy Badge][codacy-badge]][codacy-link] [![Codecov badge][codecov-badge]][codecov-link]
+[![Build Status][travis-badge]][travis-link] [![Maven Central][maven-badge]][maven-link] [![Codacy Badge][codacy-badge]][codacy-link] [![Codacy Badge][codacycov-badge]][codacycov-link] [![Codecov badge][codecov-badge]][codecov-link]
 
 # Graph4Scala graphs to Gephi images
 
@@ -74,5 +74,7 @@ The library can be built with
 [maven-link]: https://maven-badges.herokuapp.com/maven-central/vision.id/graphgephi_2.12
 [codacy-badge]: https://api.codacy.com/project/badge/Grade/10ccdeb613904b878c6eda2f0d82d851
 [codacy-link]: https://www.codacy.com/app/mcallisto/scala-graph-to-gephi?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mcallisto/scala-graph-to-gephi&amp;utm_campaign=Badge_Grade
+[codacycov-badge]: https://api.codacy.com/project/badge/Coverage/10ccdeb613904b878c6eda2f0d82d851
+[codacycov-link]: https://www.codacy.com/app/mcallisto/scala-graph-to-gephi?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mcallisto/scala-graph-to-gephi&amp;utm_campaign=Badge_Coverage
 [codecov-badge]: https://codecov.io/gh/mcallisto/scala-graph-to-gephi/branch/master/graph/badge.svg
 [codecov-link]: https://codecov.io/gh/mcallisto/scala-graph-to-gephi
