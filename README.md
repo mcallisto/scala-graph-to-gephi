@@ -18,7 +18,7 @@ Sometimes is needed to quickly visualize them, for example for test purposes.
 
 #### From a **[Mill](http://www.lihaoyi.com/mill)** project
 
-Note that two resolvers must be added to access the Gephi Toolkit sources.
+Note that one resolver must be added to access the Gephi Toolkit sources.
 
 ```scala
 import mill._, scalalib._
@@ -26,11 +26,10 @@ import coursier.maven.MavenRepository
 
 object foo extends ScalaModule {
   def repositories = super.repositories ++ Seq(
-    MavenRepository("http://bits.netbeans.org/nexus/content/groups/netbeans/"),
     MavenRepository("https://raw.github.com/gephi/gephi/mvn-thirdparty-repo/")
   )
   def ivyDeps = Agg(
-    ivy"vision.id::graphgephi:0.1.1"
+    ivy"vision.id::graphgephi:0.1.2"
   )
 }
 ```
@@ -40,7 +39,7 @@ object foo extends ScalaModule {
 ```scala
 libraryDependencies ++= Seq(
   "org.gephi" % "gephi-toolkit" % "0.9.2" classifier "all",
-  "vision.id" %% "graphgephi" % "0.1.1"
+  "vision.id" %% "graphgephi" % "0.1.2"
 )
 ```
 

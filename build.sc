@@ -17,7 +17,7 @@ trait Versioned extends ScalaModule with PublishModule with Packageable {
 
   def scalaVersion: T[String] = "2.12.8"
 
-  def publishVersion: T[String] = "0.1.1"
+  def publishVersion: T[String] = "0.1.2"
 
   override def artifactName: T[String] = name
 
@@ -37,7 +37,7 @@ trait Versioned extends ScalaModule with PublishModule with Packageable {
 trait Testable extends ScalaModule {
 
   override def ivyDeps: T[Agg[Dep]] = super.ivyDeps() ++ Agg(
-    ivy"org.scalatest::scalatest:3.0.5"
+    ivy"org.scalatest::scalatest:3.0.8"
   )
 
 }
@@ -45,14 +45,17 @@ trait Testable extends ScalaModule {
 object jvm extends Versioned { outer ⇒
 
   override def repositories: Seq[coursier.Repository] = super.repositories ++ Seq(
-    MavenRepository("http://bits.netbeans.org/nexus/content/groups/netbeans/"),
     MavenRepository("https://raw.github.com/gephi/gephi/mvn-thirdparty-repo/")
   )
 
   override def ivyDeps: T[Agg[Dep]] = super.ivyDeps() ++ Agg(
     ivy"org.scala-graph::graph-core:1.12.5",
-    ivy"com.lihaoyi::os-lib:0.2.6",
-    ivy"org.gephi:gephi-toolkit:0.9.2"
+    ivy"com.lihaoyi::os-lib:0.2.8",
+    ivy"org.gephi:gephi-toolkit:0.9.2",
+    ivy"org.netbeans.modules:org-netbeans-core:RELEASE90",
+    ivy"org.netbeans.modules:org-netbeans-core-startup-base:RELEASE90",
+    ivy"org.netbeans.modules:org-netbeans-modules-masterfs:RELEASE90",
+    ivy"org.netbeans.api:org-openide-util-lookup:RELEASE90"
   )
 
   object test extends outer.Tests with Testable with Packageable {
