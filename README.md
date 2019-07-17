@@ -16,9 +16,9 @@ Sometimes is needed to quickly visualize them, for example for test purposes.
 
 ### Use
 
-#### From a **[Mill](http://www.lihaoyi.com/mill)** project
+Note that one resolver must be added and dependencies overridden to access the Gephi Toolkit sources.
 
-Note that one resolver must be added to access the Gephi Toolkit sources.
+#### From a **[Mill](http://www.lihaoyi.com/mill)** project
 
 ```scala
 import mill._, scalalib._
@@ -28,8 +28,13 @@ object foo extends ScalaModule {
   def repositories = super.repositories ++ Seq(
     MavenRepository("https://raw.github.com/gephi/gephi/mvn-thirdparty-repo/")
   )
+
   def ivyDeps = Agg(
-    ivy"vision.id::graphgephi:0.1.2"
+    ivy"vision.id::graphgephi:0.1.2",
+    ivy"org.netbeans.modules:org-netbeans-core:RELEASE90",
+    ivy"org.netbeans.modules:org-netbeans-core-startup-base:RELEASE90",
+    ivy"org.netbeans.modules:org-netbeans-modules-masterfs:RELEASE90",
+    ivy"org.netbeans.api:org-openide-util-lookup:RELEASE90"
   )
 }
 ```
@@ -37,9 +42,20 @@ object foo extends ScalaModule {
 #### From an **[sbt](https://www.scala-sbt.org/)** project
 
 ```scala
+resolvers ++= Seq(
+  "gephi-thirdparty" at "https://raw.github.com/gephi/gephi/mvn-thirdparty-repo/"
+)
+
 libraryDependencies ++= Seq(
   "org.gephi" % "gephi-toolkit" % "0.9.2" classifier "all",
   "vision.id" %% "graphgephi" % "0.1.2"
+)
+
+dependencyOverrides ++= Seq(
+  "org.netbeans.modules" % "org-netbeans-core"              % "RELEASE90",
+  "org.netbeans.modules" % "org-netbeans-core-startup-base" % "RELEASE90",
+  "org.netbeans.modules" % "org-netbeans-modules-masterfs"  % "RELEASE90",
+  "org.netbeans.api"     % "org-openide-util-lookup"        % "RELEASE90"
 )
 ```
 
