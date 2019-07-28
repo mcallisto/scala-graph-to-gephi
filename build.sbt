@@ -12,7 +12,7 @@ libraryDependencies ++= Seq(
   "org.scala-graph" %% "graph-core" % "1.12.5",
   "com.lihaoyi" %% "os-lib" % "0.2.8",
   "org.scalatest" %% "scalatest" % "3.0.8" % "test",
-  "org.gephi" % "gephi-toolkit" % "0.9.2"
+  "org.gephi" % "gephi-toolkit" % "0.9.2" classifier "all"
 )
 
 dependencyOverrides ++= Seq(
