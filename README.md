@@ -30,7 +30,7 @@ object foo extends ScalaModule {
   )
 
   def ivyDeps = Agg(
-    ivy"vision.id::graphgephi:0.1.2",
+    ivy"vision.id::graphgephi:0.1.3",
     ivy"org.netbeans.modules:org-netbeans-core:RELEASE90",
     ivy"org.netbeans.modules:org-netbeans-core-startup-base:RELEASE90",
     ivy"org.netbeans.modules:org-netbeans-modules-masterfs:RELEASE90",
@@ -48,7 +48,7 @@ resolvers ++= Seq(
 
 libraryDependencies ++= Seq(
   "org.gephi" % "gephi-toolkit" % "0.9.2" classifier "all",
-  "vision.id" %% "graphgephi" % "0.1.2"
+  "vision.id" %% "graphgephi" % "0.1.3"
 )
 
 dependencyOverrides ++= Seq(
