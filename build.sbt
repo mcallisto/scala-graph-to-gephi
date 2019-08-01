@@ -1,6 +1,6 @@
 organization := "vision.id"
 name := "graphgephi"
-version := "0.1.2"
+version := "0.1.3"
 
 scalaVersion := "2.12.8"
 
@@ -9,7 +9,7 @@ resolvers ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "org.scala-graph" %% "graph-core" % "1.12.5",
+  "org.scala-graph" %% "graph-core" % "1.13.0",
   "com.lihaoyi" %% "os-lib" % "0.2.8",
   "org.scalatest" %% "scalatest" % "3.0.8" % "test",
   "org.gephi" % "gephi-toolkit" % "0.9.2" classifier "all"
